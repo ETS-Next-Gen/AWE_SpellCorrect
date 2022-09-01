@@ -1,0 +1,5 @@
+global-include *.cfg
+global-include *.csv
+global-include *.json
+global-include *.txt
+global-include LICENSE
