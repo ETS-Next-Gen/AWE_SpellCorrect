@@ -228,8 +228,6 @@ class SpellCorrect:
 
                 outstring = self.normalize(outstring)
 
-                print('pre', outstring)
-
                 sentences = sent_tokenize(outstring)
                 new = ''
 
@@ -247,7 +245,6 @@ class SpellCorrect:
                         print(newS)
                         print('\n\n\n')
 
-                    print('post', newS)
                     new += ' ' + newS
 
                 response_ids.append(str(response_index))
@@ -1359,6 +1356,12 @@ class SpellCorrect:
     def normalize(self, text):
         text = text.replace(' . . . ', ' ... ')
         text = text.replace(' . .', '. ')
+        text = text.replace(': .', ': ')
+        text = text.replace('? .', '? ')
+        text = text.replace('! .', '! ')
+        text = text.replace('. \' .', '.\'')
+        text = text.replace('. " .', '."')
+        text = text.replace('. ” .', '.”')
         text = text.replace(' . ', '. ')
         text = text.replace(' ? ', '? ')
         text = text.replace(' ! ', '! ')
@@ -1458,6 +1461,7 @@ class SpellCorrect:
         text = text.replace('<>', '\n')
         # special coding for paragraph break we need to get rid of
 
+        text = text.replace(':.', '!')
         text = text.replace('!.', '!')
         text = text.replace('?.', '?')
         text = text.replace('t. v.', 'tv')
@@ -1486,7 +1490,9 @@ class SpellCorrect:
         text = text.replace('etc.', 'etc')
         text = text.replace('etc .', 'etc')
         text = text.replace('’', '\'')
-        tks = text.split(' ')
+        text = text.replace(': \'\' \n', ':\n')
+        text = text.replace('”. \n', '”\n')
+
         return text
 
     def topn_words(self, left, right, n, tokenizer, model):

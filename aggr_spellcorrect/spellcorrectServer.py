@@ -48,9 +48,9 @@ class spellcorrectServer:
             self.ASPELL_PATH, self.PYSPELL_PATH)
         asyncio.get_event_loop().run_until_complete(
             websockets.serve(self.run_spellchecker, 'localhost', 8765))
-        print('running')
+        print('running spell corrector')
         asyncio.get_event_loop().run_forever()
-        print('died')
+        print('spell corrector died')
 
     async def kill(self, websocket):
         await websocket.close()
