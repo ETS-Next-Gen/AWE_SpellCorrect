@@ -1,5 +1,5 @@
-#!/usr/bin/env python3.9
-# Copyright 2021 Educational Testing Services
+#!/usr/bin/env python3.10
+# Copyright 2022 Educational Testing Services
 
 import asyncio
 import enum

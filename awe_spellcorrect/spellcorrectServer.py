@@ -1,4 +1,5 @@
-# Copyright 2021 Educational Testing Services
+#!/usr/bin/env python3.10
+# Copyright 2022 Educational Testing Services
 
 import asyncio
 import enum
@@ -8,7 +9,7 @@ import re
 import sys
 import websockets
 import neuspell
-import aggr_spellcorrect.spellCorrect
+import awe_spellcorrect.spellCorrect
 from importlib import resources
 from neuspell import BertChecker
 
@@ -32,7 +33,7 @@ class spellcorrectServer:
     def __init__(self):
 
         self.ASPELL_PATH = \
-           resources.path('aggr_spellcorrect', 'aspell.txt')
+           resources.path('awe_spellcorrect', 'aspell.txt')
 
         self.PYSPELL_PATH = \
             resources.path('symspellpy',
@@ -44,7 +45,7 @@ class spellcorrectServer:
                 "Trying to load AWE Workbench Lexicon Module \
                  without supporting datafiles")
 
-        self.cs = aggr_spellcorrect.spellCorrect.SpellCorrect(
+        self.cs = awe_spellcorrect.spellCorrect.SpellCorrect(
             self.ASPELL_PATH, self.PYSPELL_PATH)
         asyncio.get_event_loop().run_until_complete(
             websockets.serve(self.run_spellchecker, 'localhost', 8765))

@@ -1,4 +1,5 @@
-#!/usr/bin/env python3.9
+#!/usr/bin/env python3.10
+# Copyright 2022, Educational Testing Service
 
 import argparse
 
@@ -10,8 +11,6 @@ from distutils.command.install import install as _install
 from setuptools import setup
 from setuptools.command.develop import develop
 from setuptools.command.develop import develop as _develop
-
-from importlib import resources
 
 import os
 from pathlib import Path
