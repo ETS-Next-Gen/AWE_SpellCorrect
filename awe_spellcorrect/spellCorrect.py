@@ -907,7 +907,8 @@ class SpellCorrect:
 
     def transposes(self, word):
         "All edits that are one transpose away from `word`."
-        letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789''-'
+        letters = 'abcdefghijklmnopqrstuvwxyzABCDEF' \
+                  + 'GHIJKLMNOPQRSTUVWXYZ0123456789''-'
         splits = [(word[:i], word[i:])
                   for i in range(len(word) + 1)]
 
@@ -936,7 +937,8 @@ class SpellCorrect:
 
     def replacevowel(self, word):
         "All edits that involve replacements of vowel letters or digraphs"
-        letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789''-'
+        letters = 'abcdefghijklmnopqrstuvwxyzABCDEF' \
+                  + 'GHIJKLMNOPQRSTUVWXYZ0123456789''-'
         splits = [(word[:i], word[i:])
                   for i in range(len(word) + 1)]
         replaces = [L + c + R[1:]
@@ -973,7 +975,8 @@ class SpellCorrect:
 
     def deletevowel(self, word):
         "All edits that involve vowel deletions"
-        letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789''-'
+        letters = 'abcdefghijklmnopqrstuvwxyzABCDEF' \
+                  + 'GHIJKLMNOPQRSTUVWXYZ0123456789''-'
         splits = [(word[:i], word[i:])
                   for i in range(len(word) + 1)]
         deletes = [L + R[1:]
@@ -983,7 +986,8 @@ class SpellCorrect:
 
     def insertvowel(self, word):
         "All edits that involve vowel insertions"
-        letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789''-'
+        letters = 'abcdefghijklmnopqrstuvwxyzABCDEF' \
+                  + 'GHIJKLMNOPQRSTUVWXYZ0123456789''-'
         splits = [(word[:i], word[i:])
                   for i in range(len(word) + 1)]
         inserts = [L + c + R[1:]
@@ -995,7 +999,8 @@ class SpellCorrect:
         "All edits that are one replacement or involve \
          simple letter doublings"
         letters = \
-            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789''-'
+            'abcdefghijklmnopqrstuvwxyzABCDEF' \
+            + 'GHIJKLMNOPQRSTUVWXYZ0123456789''-'
         splits = [(word[:i], word[i:])
                   for i in range(len(word) + 1)]
         replaces = [L + c + R[1:]
