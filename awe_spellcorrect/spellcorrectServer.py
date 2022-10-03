@@ -32,12 +32,12 @@ class spellcorrectServer:
 
     def __init__(self):
 
-        self.ASPELL_PATH = \
-           resources.path('awe_spellcorrect', 'aspell.txt')
+        with resources.path('awe_spellcorrect', 'aspell.txt') as filepath:
+            self.ASPELL_PATH = filepath
 
-        self.PYSPELL_PATH = \
-            resources.path('symspellpy',
-                           'frequency_dictionary_en_82_765.txt')
+        with resources.path('symspellpy',
+                            'frequency_dictionary_en_82_765.txt') as filepath:
+            self.PYSPELL_PATH = filepath
 
         if not os.path.exists(self.ASPELL_PATH) \
            or not os.path.exists(self.PYSPELL_PATH):
