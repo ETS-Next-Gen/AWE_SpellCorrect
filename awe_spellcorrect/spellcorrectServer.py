@@ -48,7 +48,7 @@ class spellcorrectServer:
         self.cs = awe_spellcorrect.spellCorrect.SpellCorrect(
             self.ASPELL_PATH, self.PYSPELL_PATH)
         asyncio.get_event_loop().run_until_complete(
-            websockets.serve(self.run_spellchecker, 'localhost', 8765))
+            websockets.serve(self.run_spellchecker, 'localhost', 8765, max_size=2 ** 21))
         print('running spell corrector')
         asyncio.get_event_loop().run_forever()
         print('spell corrector died')
