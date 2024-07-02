@@ -1,0 +1,5 @@
+# Ignore those pesky files
+
+__pycache__/
+*.egg-info/
+build/
