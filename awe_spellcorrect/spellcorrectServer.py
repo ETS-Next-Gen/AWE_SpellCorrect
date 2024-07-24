@@ -32,18 +32,27 @@ class spellcorrectServer:
 
     def __init__(self):
 
-        with resources.path('awe_spellcorrect', 'aspell.txt') as filepath:
+        # Technically, these two path calls would work since they return respective
+        # context managers which can then be used for getting the Path object.
+
+        # However, this method is now deprecated; we are going to correct it with the 
+        # up-to-date method.
+        with resources.as_file(
+                resources.files('awe_spellcorrect').joinpath('aspell.txt')
+            ) as filepath:
             self.ASPELL_PATH = filepath
 
-        with resources.path('symspellpy',
-                            'frequency_dictionary_en_82_765.txt') as filepath:
+        with resources.as_file(
+                resources.files('symspellpy').joinpath('frequency_dictionary_en_82_765.txt')
+            ) as filepath:
             self.PYSPELL_PATH = filepath
 
         if not os.path.exists(self.ASPELL_PATH) \
            or not os.path.exists(self.PYSPELL_PATH):
             raise Error(
                 "Trying to load AWE Workbench Lexicon Module \
-                 without supporting datafiles")
+                without supporting datafiles"
+            )
 
         self.cs = awe_spellcorrect.spellCorrect.SpellCorrect(
             self.ASPELL_PATH, self.PYSPELL_PATH)
